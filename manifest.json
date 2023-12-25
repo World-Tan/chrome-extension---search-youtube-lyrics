@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "youtube lyrics finder",
+    "description": "find lyrics for a song on youtube",
+    "version": "1.0",
+    "action": {
+      "default_popup": "default.html"
+    },
+    "content_scripts": [
+      {
+        "js": ["content-script.js"],
+        "matches": [
+          "https://www.youtube.com/watch?v=*"
+        ],
+        "run_at": "document_idle"
+      }
+    ]
+  }
