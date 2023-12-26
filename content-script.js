@@ -1,16 +1,11 @@
 let title = null, subtitle = null, pt = null, pst = null;
-/**
- * @type Window
- */
-let win = null
+let win = null;
 
-function main(){
+async function main(){
     //console.log(subtitle?.textContent +": "+title?.textContent)
-    let url = "https://www.google.com/search?q="
-             + encodeURIComponent((subtitle ?? "") + " " + (title ?? "") + " lyrics")
-    //win?.close()
-    win = window.open(url)
-    //win.close()
+    let url = "https://www.google.com/search?q=" + encodeURIComponent((subtitle ?? "") + " " + (title ?? "") + " lyrics");
+    if (win) chrome.runtime.sendMessage({ action: "closeTab", id: win });
+    win = await chrome.runtime.sendMessage({ action: "openTab", url: url });
 }
 
 var timer = setInterval(() => {
